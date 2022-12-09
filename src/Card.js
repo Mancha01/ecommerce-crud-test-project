@@ -2,8 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import { RiDeleteBin7Line } from "react-icons/ri";
 import { CiEdit } from "react-icons/ci";
+import { Link } from "react-router-dom";
 
-export const Card = ({ title, price, description, category, img }) => {
+export const Card = ({
+  title,
+  price,
+  description,
+  category,
+  img,
+  btn,
+  btn2,
+}) => {
   return (
     <Card1>
       <Image src={img} alt="" />
@@ -16,12 +25,14 @@ export const Card = ({ title, price, description, category, img }) => {
         <Container2>
           <Title>${price}</Title>
           <Container3>
-            <div>
+            <div onClick={btn2} style={{ cursor: "pointer" }}>
               <RiDeleteBin7Line />
             </div>
-            <div>
-              <CiEdit />
-            </div>
+            <Link to="/update">
+              <div onClick={btn}>
+                <CiEdit color="black" />
+              </div>
+            </Link>
           </Container3>
         </Container2>
       </Container1>
@@ -45,10 +56,11 @@ const Container3 = styled.div`
 
 const Card1 = styled.div`
   width: 350px;
-  height: 455px;
-  background-color: #91e5f6;
+  height: 470px;
+  background-color: #e9d985;
   border-radius: 15px;
   margin-top: 20px;
+  overflow: hidden;
 `;
 
 const Image = styled.img`

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Create = () => {
   const [title, setTitle] = useState("");
@@ -7,6 +8,8 @@ const Create = () => {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [image, setImage] = useState("");
+
+  let navigate = useNavigate();
 
   const postData = (e) => {
     e.preventDefault();
@@ -16,61 +19,66 @@ const Create = () => {
         title: { title },
         price: { price },
         description: { description },
-        image: { image },
         category: { category },
+        image: { image },
       }),
     })
       .then((res) => res.json())
-      .then((json) => console.log(json));
+      .then((json) => console.log(json))
+      .then(() => {
+        navigate("/read");
+      });
   };
   return (
-    <Form onSubmit={postData}>
-      <fieldset>
-        <legend>Add Product</legend>
+    <Containment>
+      <Form onSubmit={postData}>
+        <fieldset>
+          <legend>Add Product</legend>
 
-        <Label>
-          Title
-          <Input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </Label>
-        <Label>
-          Price
-          <Input
-            type="number"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-          />
-        </Label>
-        <Label>
-          Description
-          <TextArea
-            type="text"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </Label>
-        <Label>
-          Category
-          <Input
-            type="text"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          />
-        </Label>
-        <Label>
-          Image Url
-          <Input
-            type="text"
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
-          />
-        </Label>
-      </fieldset>
-      <button type="submit">Submit</button>
-    </Form>
+          <Label>
+            Title
+            <Input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </Label>
+          <Label>
+            Price
+            <Input
+              type="number"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+            />
+          </Label>
+          <Label>
+            Description
+            <TextArea
+              type="text"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </Label>
+          <Label>
+            Category
+            <Input
+              type="text"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+            />
+          </Label>
+          <Label>
+            Image Url
+            <Input
+              type="text"
+              value={image}
+              onChange={(e) => setImage(e.target.value)}
+            />
+          </Label>
+        </fieldset>
+        <button type="submit">Submit</button>
+      </Form>
+    </Containment>
   );
 };
 
@@ -92,4 +100,14 @@ const Form = styled.form`
   margin-left: 20px;
   width: 80vw;
   height: 80vh;
+`;
+
+export const Containment = styled.div`
+  background-image: linear-gradient(
+    92.7deg,
+    rgba(245, 212, 212, 1) 8.5%,
+    rgba(252, 251, 224, 1) 90.2%
+  );
+  width: 100vw;
+  height: 100vh;
 `;
