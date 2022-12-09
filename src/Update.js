@@ -44,7 +44,7 @@ const Update = () => {
     <Containment>
       <Form>
         <fieldset>
-          <legend>Add Product</legend>
+          <legend>Update Product</legend>
 
           <Label>
             Title
